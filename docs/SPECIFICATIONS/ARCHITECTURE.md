@@ -423,7 +423,7 @@ tools:
 #### 1. Historical Pattern Recognition
 
 **Tool:** Python script + watsonx.ai embeddings
-**Input:** Carozzi EEFF PDFs (2015-2023) from `/demo_data/financials/`
+**Input:** Carozzi EEFF PDFs (2015-2023) from `/data/demo/financials/`
 
 **Data Extraction Pipeline:**
 ```python
@@ -651,7 +651,7 @@ orchestrate knowledge-bases create \
 # Upload documents
 orchestrate knowledge-bases upload \
   --kb-id contracts-kb-id \
-  --files ./demo_data/contracts/*.pdf
+  --files ./data/demo/contracts/*.pdf
 
 orchestrate knowledge-bases upload \
   --kb-id regulations-kb-id \
@@ -766,7 +766,7 @@ CREATE TABLE correlation_models (
 **Data Population (Pre-Hackathon):**
 ```bash
 # Populate with extracted Carozzi data
-python scripts/extract_financials.py ./demo_data/financials/*.pdf
+python scripts/extract_financials.py ./data/demo/financials/*.pdf
 
 # Populate external events (hardcoded)
 python scripts/populate_events.py
@@ -1225,7 +1225,7 @@ async def validate_contract(contract_data: dict) -> dict:
 - [ ] PostgreSQL data loaded (verify with `SELECT COUNT(*)`)
 - [ ] Knowledge bases indexed (verify with `orchestrate knowledge-bases list`)
 - [ ] All agents deployed (verify with `orchestrate agents list`)
-- [ ] Demo PDF ready (`/demo_data/contracts/carozzi_licitacion.pdf`)
+- [ ] Demo PDF ready (`/data/demo/contracts/carozzi_licitacion.pdf`)
 - [ ] Browser tabs open (Chat UI, Slides, Backup video)
 - [ ] Internet connection stable (or switch to offline mode)
 - [ ] Backup laptop ready (same setup)
@@ -1303,7 +1303,7 @@ orchestrate server deploy --cloud
 
 # Populate data (cloud)
 python scripts/setup_cloud_database.py
-python scripts/upload_to_cos.py ./demo_data/
+python scripts/upload_to_cos.py ./data/demo/
 ```
 
 ### Agent Deployment Commands
@@ -1320,7 +1320,7 @@ orchestrate knowledge-bases create \
   --name "procurement-contracts-kb"
 orchestrate knowledge-bases upload \
   --kb-id <kb-id> \
-  --files ./demo_data/contracts/*.pdf
+  --files ./data/demo/contracts/*.pdf
 
 # Import agents
 orchestrate agents import -f agents/supervisor.yaml

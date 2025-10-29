@@ -1,0 +1,128 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+.nox/
+
+# Type Checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Secrets & Config
+.env
+.env.*
+!.env.example
+config/*.json
+config/*.yaml
+config/*.yml
+!config/*.example.*
+secrets/
+*.pem
+*.key
+*.cert
+
+# watsonx
+.watsonx/
+watsonx_cache/
+*.watsonx.json
+
+# Data (exclude raw/processed, keep demo)
+data/raw/*
+data/processed/*
+data/predictions/*
+!data/*/.gitkeep
+!data/demo/
+
+# Models
+models/
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.onnx
+
+# CI/CD
+.github/workflows/*.log
+deployment/*.log
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Documentation Build
+docs/_build/
+docs/.doctrees/
+site/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# Pre-commit
+.pre-commit-config.yaml.lock

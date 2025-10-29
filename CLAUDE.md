@@ -92,12 +92,16 @@ TOTO REVIEWS → Accept or Adjust
 
 ### Key Documents
 
-| Document | Purpose | Status |
-|----------|---------|--------|
-| `HACKATHON_IDEA.md` | Complete idea specification (8,000 words) | ✅ Locked |
-| `WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md` | Full IBM stack intel (13,000 words) | ✅ Complete |
-| `QUICK_START_CHEATSHEET.md` | Fast reference guide | ✅ Ready |
-| `demo_data/` | Carozzi real data (contracts, financials) | ✅ Prepared |
+| Document | Location | Purpose | Status |
+|----------|----------|---------|--------|
+| `HACKATHON_IDEA.md` | `docs/SPECIFICATIONS/` | Complete idea specification (8,000 words) | ✅ Locked |
+| `ARCHITECTURE.md` | `docs/SPECIFICATIONS/` | System architecture design | ✅ Complete |
+| `WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md` | `docs/RESEARCH/` | Full IBM stack intel (13,000 words) | ✅ Complete |
+| `RESEARCH_FINDINGS_SUMMARY.md` | `docs/RESEARCH/` | Research summary & correlations | ✅ Complete |
+| `DEPENDENCY_AUDIT.md` | `docs/RESEARCH/` | Technology stack analysis | ✅ Complete |
+| `QUICK_START_CHEATSHEET.md` | `docs/GUIDES/` | Fast reference guide | ✅ Ready |
+| `MCP_ANALYSIS.md` | `docs/GUIDES/` | MCP integration guide | ✅ Ready |
+| `data/demo/` | Root | Carozzi real data (contracts, financials) | ✅ Prepared |
 
 ### Hackathon Workflow
 
@@ -247,18 +251,53 @@ orchestrate agent list
 ### Project Structure
 ```
 /ibm_hackathon/
-├── HACKATHON_IDEA.md                    # Complete idea spec
-├── WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md  # IBM stack intel
-├── QUICK_START_CHEATSHEET.md            # Fast reference
-├── demo_data/
-│   ├── contracts/                       # Carozzi licitación PDF
-│   └── financials/                      # EEFF 2015-2023
-├── src/                                 # (To be created)
+├── docs/                                # Documentation
+│   ├── SPECIFICATIONS/                  # Project specs & architecture
+│   │   ├── HACKATHON_IDEA.md           # Complete idea spec (8K words)
+│   │   └── ARCHITECTURE.md             # System design
+│   ├── RESEARCH/                        # Research & analysis
+│   │   ├── WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md  # IBM stack intel (13K words)
+│   │   ├── RESEARCH_FINDINGS_SUMMARY.md
+│   │   └── DEPENDENCY_AUDIT.md
+│   ├── GUIDES/                          # Developer guides
+│   │   ├── QUICK_START_CHEATSHEET.md   # Fast reference
+│   │   └── MCP_ANALYSIS.md             # MCP integration
+│   └── HANDOFF/                         # Agent handoff notes
+├── data/                                # Data files
+│   ├── demo/                            # Demo datasets (with README)
+│   │   ├── contracts/                   # Carozzi licitación PDF
+│   │   └── financials/                  # EEFF 2015-2023
+│   ├── raw/                             # Raw data (gitignored)
+│   ├── processed/                       # Processed data (gitignored)
+│   └── predictions/                     # Model predictions (gitignored)
+├── src/                                 # Python source code
 │   ├── agents/                          # Agent implementations
 │   ├── orchestration/                   # Workflow logic
-│   ├── predictive/                      # Pattern recognition
-│   └── utils/                           # Helpers
-└── tests/                               # (To be created)
+│   ├── predictive/                      # Pattern recognition & ML
+│   ├── integrations/                    # External API integrations
+│   └── utils/                           # Helpers & utilities
+├── tests/                               # Test suite
+│   ├── unit/                            # Unit tests
+│   ├── integration/                     # Integration tests
+│   └── fixtures/                        # Test fixtures
+├── notebooks/                           # Jupyter notebooks (EDA)
+├── scripts/                             # Automation scripts
+│   ├── local-setup.sh                   # Developer setup
+│   ├── run-tests.sh                     # Test runner
+│   ├── deploy-staging.py                # Staging deployment
+│   └── deploy-production.py             # Production deployment
+├── config/                              # Configuration files
+│   └── .env.example                     # Environment template
+├── .github/workflows/                   # CI/CD pipelines
+│   ├── ci.yml                           # Lint, test, build
+│   ├── staging-deploy.yml               # Auto-deploy to staging
+│   └── production-gate.yml              # Manual production gate
+├── pyproject.toml                       # Python project config
+├── Makefile                             # Developer commands
+├── .gitignore                           # Git ignore rules
+├── .pre-commit-config.yaml              # Pre-commit hooks
+├── README.md                            # Project overview
+└── CLAUDE.md                            # This file
 ```
 
 ### Key URLs

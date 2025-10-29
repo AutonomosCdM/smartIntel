@@ -131,9 +131,6 @@ When cocoa spiked 50% in 2023, Carozzi's margin dropped 8%. They had no warning,
 /ibm_hackathon/
 ├── README.md                                    # This file
 ├── CLAUDE.md                                    # Agent workflow rules
-├── HACKATHON_IDEA.md                           # Complete spec (8,000 words)
-├── WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md  # IBM stack intel (13,000 words)
-├── QUICK_START_CHEATSHEET.md                   # Fast reference
 ├── .claude/
 │   └── agents/                                  # 10 specialized agents
 │       ├── hackathon-ai-strategist.md
@@ -146,18 +143,52 @@ When cocoa spiked 50% in 2023, Carozzi's margin dropped 8%. They had no warning,
 │       ├── adrian-newey-verifier.md
 │       ├── james-financial-analyst.md
 │       └── prompt-engineer.md
-├── demo_data/
-│   ├── contracts/
-│   │   └── 352_B_Res.-Bases_de_Licitación_-Proyecto_IA_para_detección_de_ano.pdf
-│   └── financials/
-│       ├── EEFF_Anual_2022.pdf
-│       └── EEFF_Anual_2023.pdf
-├── src/                                         # (To be created)
+├── docs/                                        # Documentation
+│   ├── SPECIFICATIONS/                          # Project specs
+│   │   ├── HACKATHON_IDEA.md                   # Complete spec (8K words)
+│   │   └── ARCHITECTURE.md                     # System design
+│   ├── RESEARCH/                                # Research & analysis
+│   │   ├── WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md  # IBM stack (13K)
+│   │   ├── RESEARCH_FINDINGS_SUMMARY.md
+│   │   └── DEPENDENCY_AUDIT.md
+│   ├── GUIDES/                                  # Developer guides
+│   │   ├── QUICK_START_CHEATSHEET.md
+│   │   └── MCP_ANALYSIS.md
+│   └── HANDOFF/                                 # Agent handoff notes
+├── data/
+│   ├── demo/                                    # Demo datasets (real data)
+│   │   ├── contracts/                           # Carozzi licitación PDF
+│   │   ├── financials/                          # EEFF 2015-2023 (9 years)
+│   │   └── README.md                            # Data dictionary
+│   ├── raw/                                     # Raw data (gitignored)
+│   ├── processed/                               # Processed (gitignored)
+│   └── predictions/                             # Predictions (gitignored)
+├── src/                                         # Python source code
 │   ├── agents/                                  # Agent implementations
 │   ├── orchestration/                           # Workflow logic
-│   ├── predictive/                              # Pattern recognition
+│   ├── predictive/                              # Pattern recognition & ML
+│   ├── integrations/                            # External APIs
 │   └── utils/                                   # Helpers
-└── tests/                                       # (To be created)
+├── tests/                                       # Test suite
+│   ├── unit/                                    # Unit tests
+│   ├── integration/                             # Integration tests
+│   └── fixtures/                                # Test fixtures
+├── notebooks/                                   # Jupyter notebooks
+├── scripts/                                     # Automation
+│   ├── local-setup.sh                           # Developer setup
+│   ├── run-tests.sh                             # Test runner
+│   ├── deploy-staging.py                        # Staging deploy
+│   └── deploy-production.py                     # Production deploy
+├── config/
+│   └── .env.example                             # Environment template
+├── .github/workflows/                           # CI/CD
+│   ├── ci.yml                                   # Lint + test + build
+│   ├── staging-deploy.yml                       # Auto-deploy staging
+│   └── production-gate.yml                      # Manual prod gate
+├── pyproject.toml                               # Python config
+├── Makefile                                     # Developer commands
+├── .gitignore                                   # Git ignores
+└── .pre-commit-config.yaml                      # Pre-commit hooks
 ```
 
 ---
@@ -217,19 +248,27 @@ When cocoa spiked 50% in 2023, Carozzi's margin dropped 8%. They had no warning,
 ## 📝 Quick Start Commands
 
 ```bash
-# Install watsonx Orchestrate
+# 1. Initial setup (creates venv, installs deps, pre-commit)
+./scripts/local-setup.sh
+
+# 2. Activate virtual environment
+source .venv/bin/activate
+
+# 3. Configure credentials
+cp config/.env.example .env
+vim .env  # Add your watsonx API keys
+
+# 4. Run tests
+make test
+
+# 5. Developer commands (see all options)
+make help
+
+# watsonx Orchestrate CLI
 pip install --upgrade ibm-watsonx-orchestrate
-
-# Verify installation
 orchestrate --version
-
-# Create new agent
 orchestrate agent create contract-analyst
-
-# Deploy agent
 orchestrate agent deploy contract-analyst
-
-# List all agents
 orchestrate agent list
 ```
 
