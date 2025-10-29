@@ -160,11 +160,12 @@ Accuracy: 91% ✅
 | Task | Owner | Hours | Output |
 |------|-------|-------|--------|
 | watsonx Docker setup | valtteri | 2 | Local environment running |
-| Database schema | valtteri | 2 | PostgreSQL ready |
+| watsonx Text Extraction API integration | valtteri | 2 | PDF → markdown working |
+| Document Field Extractor setup | valtteri | 1 | Schema defined for EEFF + contracts |
+| Database schema | valtteri | 1 | PostgreSQL ready |
 | Supervisor agent | valtteri | 2 | Basic routing working |
-| Contract Analyst | valtteri | 2 | PDF extraction |
 
-**Checkpoint Hour 8**: Can upload PDF and extract data?
+**Checkpoint Hour 8**: Can upload PDF and auto-extract structured data?
 
 ---
 
@@ -173,10 +174,10 @@ Accuracy: 91% ✅
 | Task | Owner | Hours | Output |
 |------|-------|-------|--------|
 | Guardrails engine | valtteri | 4 | 4-panel validation |
-| Data extraction (EEFF) | george | 3 | 10 years metrics |
+| **Batch process 10 EEFF PDFs** | **valtteri** | **2** | **10 years data loaded automatically** |
 | Predictive module | hamilton | 5 | Scenario simulator |
 
-**Checkpoint Hour 16**: Can run predictions?
+**Checkpoint Hour 16**: Historical data loaded automatically? Predictions working?
 
 ---
 
@@ -414,34 +415,34 @@ def predict_commodity_impact(commodity, price_change):
 
 ### Immediate (Next 2 Hours)
 
-**1. Data Extraction** (george-research):
+**1. Environment Setup** (valtteri-code-master):
 ```bash
-Task: Extract Carozzi EEFF metrics (2015-2023)
-Output: 10 years financial data in database
-Priority: HIGH (blocks predictive module)
+Task: Setup watsonx Orchestrate local Docker + Text Extraction API
+Output: Hello-world agent running + PDF extraction working
+Priority: CRITICAL (blocks everything)
 ```
 
-**2. Environment Setup** (valtteri-code-master):
+**2. Obtain watsonx Space ID**:
 ```bash
-Task: Setup watsonx Orchestrate local Docker
-Output: Hello-world agent running
-Priority: CRITICAL (blocks everything)
+Task: Get WATSONX_SPACE_ID from watsonx.ai UI
+Output: Space ID added to .env (required for Document Field Extractor)
+Priority: HIGH (needed for automated extraction)
 ```
 
 ### Short-Term (Next 8 Hours)
 
-**3. Contract Analyst Agent** (valtteri):
+**3. Document Field Extractor Setup** (valtteri):
 ```bash
-Task: Implement PDF extraction + risk flagging
-Output: Can analyze Carozzi licitación PDF
-Priority: HIGH (core demo feature)
+Task: Configure Pydantic schemas (FinancialStatement + Contract)
+Output: Field extractor working with test PDF
+Priority: HIGH (core innovation)
 ```
 
-**4. Database Schema** (valtteri):
+**4. Batch Process EEFF PDFs** (valtteri):
 ```bash
-Task: Create PostgreSQL schema (financial_metrics, etc.)
-Output: Database ready for data loading
-Priority: MEDIUM
+Task: Run automated pipeline on 10 years Carozzi EEFF PDFs
+Output: Historical data loaded in PostgreSQL
+Priority: HIGH (blocks predictive module)
 ```
 
 ---
@@ -453,6 +454,7 @@ Priority: MEDIUM
 | **This Plan** | `docs/HANDOFF/HACKATHON_MASTER_PLAN.md` | Master reference |
 | **Strategy** | (in this file, section 1-6) | Winning approach |
 | **Architecture** | (in this file, section 7-10) | Technical design |
+| **PDF Pipeline** | `docs/SPECIFICATIONS/PDF_EXTRACTION_PIPELINE.md` | Automated extraction (IBM native) |
 | **Idea Spec** | `docs/SPECIFICATIONS/HACKATHON_IDEA.md` | Full business case |
 | **watsonx Intel** | `docs/RESEARCH/WATSONX_ORCHESTRATE_INTELLIGENCE_REPORT.md` | IBM tech reference |
 
@@ -507,8 +509,10 @@ Priority: MEDIUM
 
 ---
 
-**Plan Status**: ✅ APPROVED - Ready for Implementation
-**Next Agent**: george-research (data extraction)
+**Plan Status**: ✅ REVISED - IBM Native PDF Pipeline (2025-10-29)
+**Architectural Change**: Replaced manual George extraction → watsonx native automated pipeline
+**Next Agent**: valtteri-code-master (environment setup + PDF pipeline)
 **Timeline Start**: NOW
 **First Checkpoint**: Hour 8
 **Final Deadline**: Hour 48
+**Timeline Impact**: -1 hour saved (automated pipeline faster than manual)
