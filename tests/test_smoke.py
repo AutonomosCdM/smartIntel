@@ -1,5 +1,4 @@
 """Smoke tests to verify basic import functionality."""
-import pytest
 
 
 def test_import_src():

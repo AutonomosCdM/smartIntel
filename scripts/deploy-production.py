@@ -8,7 +8,6 @@ REQUIRES MANUAL APPROVAL - triggered via GitHub Actions only.
 
 import os
 import sys
-from pathlib import Path
 from datetime import datetime
 
 # Colors for terminal output

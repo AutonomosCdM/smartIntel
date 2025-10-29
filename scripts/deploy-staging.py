@@ -7,7 +7,6 @@ Deploys the application to staging environment (watsonx Orchestrate).
 
 import os
 import sys
-from pathlib import Path
 from datetime import datetime
 
 # Colors for terminal output
