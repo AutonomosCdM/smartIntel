@@ -31,7 +31,7 @@ def test_api_key_valid():
     token_data = response.json()
     assert "access_token" in token_data, "No access token in response"
 
-    print(f"✅ API Key valid")
+    print("✅ API Key valid")
     print(f"✅ Access token obtained: {token_data['access_token'][:20]}...")
     return token_data["access_token"]
 
