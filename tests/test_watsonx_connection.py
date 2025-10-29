@@ -1,24 +1,32 @@
-"""Test watsonx API connection with real credentials."""
+"""Test watsonx API connection with real credentials.
+
+These tests are optional and will be skipped if credentials are not available.
+Run locally with .env file or CI will skip these tests.
+"""
 
 import os
 
+import pytest
 import requests
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables (no-op in CI, loads .env locally)
 load_dotenv()
 
 API_KEY = os.getenv("WATSONX_API_KEY")
 PROJECT_ID = os.getenv("WATSONX_PROJECT_ID")
 WATSONX_URL = os.getenv("WATSONX_URL", "https://us-south.ml.cloud.ibm.com")
 
+# Skip all tests if credentials not available
+pytestmark = pytest.mark.skipif(
+    not API_KEY or not PROJECT_ID,
+    reason="watsonx credentials not configured (optional integration test)",
+)
+
 
 def test_api_key_valid():
     """Test that API key can generate access token."""
     print("\n🔑 Testing API Key validity...")
-
-    if not API_KEY:
-        raise ValueError("WATSONX_API_KEY not set in .env")
 
     response = requests.post(
         "https://iam.cloud.ibm.com/identity/token",
@@ -39,9 +47,6 @@ def test_api_key_valid():
 def test_project_id_format():
     """Test that Project ID has correct format."""
     print("\n🆔 Testing Project ID format...")
-
-    if not PROJECT_ID:
-        raise ValueError("WATSONX_PROJECT_ID not set in .env")
 
     # UUID format: 8-4-4-4-12 characters
     parts = PROJECT_ID.split("-")
